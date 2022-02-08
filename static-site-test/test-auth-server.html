@@ -62,9 +62,9 @@
                 })
         }
 
-        const codeValue = document.getElementById("code")
-        const getAccessToken = document.getElementById("getToken")
-        const accessTokenElement = document.getElementById("accessToken")
+        const codeValue = document.getElementById("code");
+        const getAccessToken = document.getElementById("getToken");
+        const accessTokenElement = document.getElementById("accessToken");
         const getToken = "https://h6wrlhsbo2.execute-api.us-east-1.amazonaws.com/dev/api/token"
 
         getAccessToken.onclick = function () {
@@ -73,9 +73,10 @@
                 code = encodeURIComponent(codeValue.value);
             }
             const getTokenRequest = getToken + "/" + code;
-            fetch(getTokenRequest).then(function (response) {
-                return response.json();
-            })
+            fetch(getTokenRequest)
+                .then(function (response) {
+                    return response.json();
+                })
                 .then(function (json) {
                     accessTokenElement.innerText = JSON.stringify(json);
                 })
