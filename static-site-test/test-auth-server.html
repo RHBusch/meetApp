@@ -87,7 +87,7 @@
 
         const getEvents = document.getElementById("getEvents");
         const events = document.getElementById("events");
-        const getCalendarEvents = "ENDPOINT"
+        const getCalendarEvents = "https://h6wrlhsbo2.execute-api.us-east-1.amazonaws.com/dev/api/get-events"
 
         getEvents.onclick = function () {
             const { access_token } = JSON.parse(accessTokenElement.innerText);
@@ -106,8 +106,7 @@
 </html>
 
 <!-- 
- GET - https://h6wrlhsbo2.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url
-  GET - https://h6wrlhsbo2.execute-api.us-east-1.amazonaws.com/dev/api/token/{code}
-  GET - https://h6wrlhsbo2.execute-api.us-east-1.amazonaws.com/dev/api/get-events/{access_token}
-
+GET - https://48r7wegz9i.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url
+  GET - https://48r7wegz9i.execute-api.us-east-1.amazonaws.com/dev/api/token/{code}
+  GET - https://48r7wegz9i.execute-api.us-east-1.amazonaws.com/dev/api/get-events/{access_token}
 -->
