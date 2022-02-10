@@ -146,7 +146,7 @@ module.exports.getCalendarEvents = event => {
       return {
         statusCode: 200,
         headers: {
-          'Access-Control-Allow-Origin': '*'
+          'Access-Control-Allow-Origin': 'https://48r7wegz9i.execute-api.us-east-1.amazonaws.com'
         },
         body: JSON.stringify({ events: results.data.items })
       }
