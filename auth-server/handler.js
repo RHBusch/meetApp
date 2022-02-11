@@ -99,6 +99,9 @@ module.exports.getAccessToken = async (event) => {
       // Respond with OAuth token 
       return {
         statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': 'http://localhost:8080'
+        },
         body: JSON.stringify(token),
       };
     })
@@ -112,16 +115,17 @@ module.exports.getAccessToken = async (event) => {
     });
 };
 
-module.exports.getCalendarEvents = event => {
+
+
+
+module.exports.getCalendarEvents = async (event) => {
   const oAuth2Client = new google.auth.OAuth2(
     client_id,
     client_secret,
     redirect_uris[0]
   );
-  const access_token = decodeURIComponent(`${event.pathParameters.code}`);
+  const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
   oAuth2Client.setCredentials({ access_token })
-
-
 
   return new Promise((resolve, reject) => {
 
@@ -135,9 +139,9 @@ module.exports.getCalendarEvents = event => {
       },
       (error, response) => {
         if (error) {
-          reject(error);
+          return reject(error);
         } else {
-          resolve(response);
+          return resolve(response);
         }
       }
     );
@@ -146,7 +150,7 @@ module.exports.getCalendarEvents = event => {
       return {
         statusCode: 200,
         headers: {
-          'Access-Control-Allow-Origin': 'https://48r7wegz9i.execute-api.us-east-1.amazonaws.com'
+          'Access-Control-Allow-Origin': 'http://localhost:8080'
         },
         body: JSON.stringify({ events: results.data.items })
       }
@@ -157,8 +161,7 @@ module.exports.getCalendarEvents = event => {
       console.error(err);
       return {
         statusCode: 500,
-        headers: { 'Access-Control-Allow-Origin': '*' }
+        body: JSON.stringify(err),
       };
     });
-
 }
