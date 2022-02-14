@@ -1,7 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import NumEvents from '../NumEvents'
-import { mockData } from '../mock-data'
 
 
 describe('<NumEvents/> component', () => {

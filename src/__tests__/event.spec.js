@@ -1,18 +1,3 @@
-/*
-- An event component exists (passed)
-- Component displays basic details --- [Summmary, 
-
-
-
-
-
-    Date/timezone (+ correct),start time (+correct), Location (+ correct), 
-    Event name (correct), show details button ]
-- Event details are hidden by default
-- Event details are displayed onClick
--
-*/
-
 import React from 'react';
 import { shallow } from 'enzyme';
 import Event from '../Event'
