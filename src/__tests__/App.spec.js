@@ -12,7 +12,7 @@ describe('<App /> component', () => {
         AppWrapper = shallow(<App />)
     })
 
-
+    //These tests check to make sure the relevant components are included with the app. 
 
     test('render list of events', () => {
         expect(AppWrapper.find(EventList)).toHaveLength(1);

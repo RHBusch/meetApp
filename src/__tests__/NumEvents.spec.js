@@ -15,6 +15,8 @@ describe('<NumEvents/> component', () => {
         const numEvents = NumEventsWrapper.state('numEvents');
         expect(NumEventsWrapper.find('.numEvents').prop('value')).toBe(numEvents)
     })
+    /*Initial state numEvents is set to 32. A change/click is simulated with the new value
+    set to 7 via newEventsNumber. Testing whether that comes back correct and the value of numEvents to be 7*/
     test('change state w/input', () => {
         NumEventsWrapper.setState({
             numEvents: 32
