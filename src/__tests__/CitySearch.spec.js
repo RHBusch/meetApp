@@ -9,7 +9,7 @@ describe('<CitySearch /> component', () => {
     //Establishing the wrapper for all tests. 
     beforeAll(() => {
         locations = extractLocations(mockData);
-        CitySearchWrapper = shallow(<CitySearch locations={locations} />)
+        CitySearchWrapper = shallow(<CitySearch locations={locations} updateEvents={() => { }} />)
     })
     //Finding an element with the className 'city'
     test('render text input', () => {
