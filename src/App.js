@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumEvents from './NumEvents';
 import { getEvents, extractLocations } from './api';
+import './nprogress.css'
 
 
 export class App extends Component {
