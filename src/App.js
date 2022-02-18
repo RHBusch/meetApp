@@ -21,6 +21,7 @@ export class App extends Component {
           event.location === location);
       this.setState({
         events: locationEvents
+        //Add number of events here? 
       })
     })
   }
