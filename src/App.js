@@ -16,16 +16,27 @@ export class App extends Component {
 
   updateEvents = (location) => {
     getEvents().then((events) => {
-      const locationEvents = (location === 'all') ?
-        events : events.filter((event) =>
+      const locationEvents = (location === 'all')
+        ? events
+        : events.filter((event) =>
           event.location === location);
-      const displayEvents = locationEvents.slice(0, this.state.numEvents);
-      this.setState({
-        events: displayEvents,
-        selectedLocation: location
-      })
+      const { numberEvents } = this.state;
+      if (this.mounted) {
+        this.setState({
+          events: locationEvents.slice(0, numberEvents),
+          selectedLocation: location,
+        })
+      }
     })
   }
+
+  updateNumberOfEvents = (eventCount) => {
+    const { selectedLocation } = this.state;
+    this.setState({
+      numberEvents: eventCount,
+    });
+    this.updateEvents(selectedLocation, eventCount);
+  };
 
   componentDidMount() { //Loading events when app loads. Using API call to save initial data to state. 
     this.mounted = true; //Updating state only if this.mounted is true. 
@@ -45,7 +56,6 @@ export class App extends Component {
         <EventList events={this.state.events} numberEvents={this.state.numberEvents} />
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumEvents numberEvents={this.state.numberEvents} />
-
       </div>
     );
   }
