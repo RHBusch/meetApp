@@ -48,9 +48,15 @@ describe('App /> integration', () => {
         /* ^^^ The test simulates a click on the last list item (which will always be “See all cities”),
          then checks if the events state of the App component equals the list of all events. */
     })
-    test('# of initially loaded events should be 32', async () => {
+    test('# of initially loaded events should not be undefined', async () => {
         const AppWrapper = mount(<App />);
-        expect(AppWrapper.state('numberEvents')).toBe(32);
+        const AppNumEventsState = AppWrapper.state('numberEvents');
+        expect(AppNumEventsState).not.toEqual(undefined);
+        AppWrapper.unmount();
+    })
+    test('# of events should be 32 passed from NumEvents', () => {
+        const AppWrapper = mount(<App />);
+        expect(AppWrapper.find(NumEvents).props().numberEvents).toEqual(32);
         AppWrapper.unmount();
     })
 })

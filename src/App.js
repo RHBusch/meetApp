@@ -17,22 +17,15 @@ export class App extends Component {
   updateEvents = (location) => {
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
-        events :
-        events.filter((event) =>
+        events : events.filter((event) =>
           event.location === location);
+      const displayEvents = locationEvents.slice(0, this.state.numEvents);
       this.setState({
-        events: locationEvents
-        //I'm calling data correctly in api.js need to update this function to include numevents. 
+        events: displayEvents,
+        selectedLocation: location
       })
     })
   }
-
-
-
-  // Add additional updateNumEvents function? 
-
-
-
 
   componentDidMount() { //Loading events when app loads. Using API call to save initial data to state. 
     this.mounted = true; //Updating state only if this.mounted is true. 
@@ -49,7 +42,7 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-        <EventList events={this.state.events} />
+        <EventList events={this.state.events} numberEvents={this.state.numberEvents} />
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumEvents numberEvents={this.state.numberEvents} />
 
