@@ -6,7 +6,7 @@ import NumEvents from '../NumEvents'
 describe('<NumEvents/> component', () => {
     let NumEventsWrapper;
     beforeAll(() => {
-        NumEventsWrapper = shallow(<NumEvents updateNumEvents={() => { }} />)
+        NumEventsWrapper = shallow(<NumEvents updateNumEvents={() => { }} setNewNumber={() => { }} />)
     })
     test('renders a place to input number of events', () => {
         expect(NumEventsWrapper.find('.numEvents')).toHaveLength(1);
@@ -15,17 +15,17 @@ describe('<NumEvents/> component', () => {
         const numEvents = NumEventsWrapper.state('.numEvents');
         expect(NumEventsWrapper.find('.numEvents').prop('value')).toBe(numEvents)
     })
+
+
     /*Initial state numEvents is set to 32. A change/click is simulated with the new value
     set to 7 via newEventsNumber. Testing whether that comes back correct and the value of numEvents to be 7*/
     /* test('change state w/input', () => {
-         NumEventsWrapper.setState({
-             numEvents: 32
-         })
+ 
          const newEventsNumber = { target: { value: '7' } };
          NumEventsWrapper.find('.numEvents').simulate(
              'change',
              newEventsNumber
          )
-         expect(NumEventsWrapper.state('numEvents')).toBe('7');
+         expect(NumEventsWrapper.state('.numEvents')).toBe('7');
      })*/
 })
