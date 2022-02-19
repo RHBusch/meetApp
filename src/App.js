@@ -14,9 +14,22 @@ export class App extends Component {
     numberEvents: 32
   }
 
+  componentDidMount() { //Loading events when app loads. Using API call to save initial data to state. 
+    this.mounted = true; //Updating state only if this.mounted is true. 
+    getEvents().then((events) => {
+      if (this.mounted) {
+        this.setState({ events, locations: extractLocations(events) })
+      }
+    })
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   updateEvents = (location) => {
     getEvents().then((events) => {
-      const locationEvents = (location === 'all')
+      const locationEvents = location === 'all'//(location === 'all')
         ? events
         : events.filter((event) =>
           event.location === location);
@@ -30,7 +43,7 @@ export class App extends Component {
     })
   }
 
-  updateNumberOfEvents = (eventCount) => {
+  updateNumOfEvents = (eventCount) => {
     const { selectedLocation } = this.state;
     this.setState({
       numberEvents: eventCount,
@@ -38,25 +51,16 @@ export class App extends Component {
     this.updateEvents(selectedLocation, eventCount);
   };
 
-  componentDidMount() { //Loading events when app loads. Using API call to save initial data to state. 
-    this.mounted = true; //Updating state only if this.mounted is true. 
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) })
-      }
-    })
-  }
-  componentWillUnmount() {
-    this.mounted = false;
-  }
+  ////numberEvents={this.state.numberEvents} --- EventList
   //Need to update state in NumEvents. 
   render() {
+
     return (
       <div className="App">
-        <EventList events={this.state.events} numberEvents={this.state.numberEvents} />
+        <EventList events={this.state.events} />
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumEvents numberEvents={this.state.numberEvents}
-          updateNumberOfEvents={this.updateNumberOfEvents} />
+          updateNumOfEvents={this.updateNumOfEvents} />
       </div>
     );
   }
