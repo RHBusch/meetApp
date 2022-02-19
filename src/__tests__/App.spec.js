@@ -7,6 +7,7 @@ import NumEvents from '../NumEvents';
 import { mockData } from '../mock-data';
 import { extractLocations, getEvents } from '../api';
 import { getCalendarEvents } from '../../auth-server/handler';
+import { waitForElementToBeRemoved } from '@testing-library/react';
 
 describe('App /> integration', () => {
     test('App passes "events" state as a prop to EventList', () => {
@@ -47,13 +48,12 @@ describe('App /> integration', () => {
         /* ^^^ The test simulates a click on the last list item (which will always be “See all cities”),
          then checks if the events state of the App component equals the list of all events. */
     })
+    test('# of initially loaded events should be 32', async () => {
+        const AppWrapper = mount(<App />);
+        expect(AppWrapper.state('numberEvents')).toBe(32);
+        AppWrapper.unmount();
+    })
 })
-
-
-
-
-
-
 
 
 

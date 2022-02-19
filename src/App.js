@@ -10,7 +10,8 @@ import './nprogress.css'
 export class App extends Component {
   state = {
     events: [],
-    locations: [] // initial state values are all empty. 
+    locations: [],
+    numberEvents: 32
   }
 
   updateEvents = (location) => {
@@ -21,10 +22,18 @@ export class App extends Component {
           event.location === location);
       this.setState({
         events: locationEvents
-        //Add number of events here
+        //I'm calling data correctly in api.js need to update this function to include numevents. 
       })
     })
   }
+
+
+
+  // Add additional updateNumEvents function? 
+
+
+
+
   componentDidMount() { //Loading events when app loads. Using API call to save initial data to state. 
     this.mounted = true; //Updating state only if this.mounted is true. 
     getEvents().then((events) => {
@@ -42,7 +51,7 @@ export class App extends Component {
       <div className="App">
         <EventList events={this.state.events} />
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <NumEvents />
+        <NumEvents numberEvents={this.state.numberEvents} />
 
       </div>
     );
