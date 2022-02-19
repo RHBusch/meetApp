@@ -40,7 +40,7 @@ const removeQuery = () => {
 }
 
 
-export const getEvents = async () => {
+export const getEvents = async () => { //Calling events from the Google API. Need to show number of events here?
     NProgress.start(); //progress loading bar
     if (window.location.href.startsWith('http://localhost')) {
         NProgress.done()

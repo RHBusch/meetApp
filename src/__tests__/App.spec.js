@@ -61,8 +61,6 @@ describe('App /> integration', () => {
     })
 })
 
-
-
 describe('<App /> component', () => {
     let AppWrapper;
     beforeAll(() => {
