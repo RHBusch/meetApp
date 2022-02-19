@@ -10,7 +10,7 @@ import './nprogress.css'
 export class App extends Component {
   state = {
     events: [],
-    locations: []
+    locations: [] // initial state values are all empty. 
   }
 
   updateEvents = (location) => {
@@ -21,7 +21,7 @@ export class App extends Component {
           event.location === location);
       this.setState({
         events: locationEvents
-        //Add number of events here? 
+        //Add number of events here
       })
     })
   }
@@ -36,7 +36,7 @@ export class App extends Component {
   componentWillUnmount() {
     this.mounted = false;
   }
-
+  //Need to update state in NumEvents. 
   render() {
     return (
       <div className="App">
