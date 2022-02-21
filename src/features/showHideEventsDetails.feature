@@ -18,5 +18,5 @@ Feature: Show/hide and event's details
     Given an event element is maximized/expanded 
 
     When a user wishes to select another event
-    
+
     Then they can minimize the current event element to select another

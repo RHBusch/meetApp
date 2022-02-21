@@ -20,8 +20,8 @@ is used instead of “./filterEventsByCity.feature.”*/
  They need to be the same wording!*/
 
 defineFeature(feature, test => {
-    test('When user hasn’t searched for a city, show upcoming events from all cities.', ({ given, when, then }) => {
-        given('user hasn’t searched for any city', () => {
+    test('When user hasnt searched for a city, show upcoming events from all cities.', ({ given, when, then }) => {
+        given('user hasnt searched for any city', () => {
 
         });
         let AppWrapper;
