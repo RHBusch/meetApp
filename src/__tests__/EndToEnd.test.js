@@ -5,6 +5,14 @@ Scenario 1: An event element is collapsed by default.
 Scenario 2: User can expand an event to see its details.
 Scenario 3: User can collapse an event to hide its details. */
 
+//Careful with variables here... especially show/hideDetails + button className
+/*
+Encountered four errors (one was a timeout thing), 
+the other was not having npm run start running at the same time as npm run test
+the other was having my variables out of order
+ther other was having browser.close(); stuck in the test itself instead of afterAll(). 
+
+*/
 
 describe('show/hide an event detils', () => {
     let browser;
