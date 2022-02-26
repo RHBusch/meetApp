@@ -100,3 +100,10 @@ Scenario(s)
     * Given the user is on the main page 
     * When scrolling and viewing the screen 
     * Then a chart will highlight the number of upcoming events by city 
+
+### Atatus Browser Monitor 
+    * Review load speeeds
+    * Review errors
+    * Use reports to boost performance
+
+
