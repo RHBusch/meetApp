@@ -19,7 +19,7 @@ export class App extends Component {
     this.mounted = true; //Updating state only if this.mounted is true. 
     getEvents().then((events) => {
       if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) })
+        this.setState({ events: events.slice(0, this.state.numberEvents), locations: extractLocations(events) })
       }
     })
   }
@@ -28,32 +28,45 @@ export class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location, numberEvents) => {
+  updateEvents = (location) => {
     getEvents().then((events) => {
-      let locationEvents = (location === "all") ?
-        events :
+      let locationEvents = location === "all"
+        ? events :
         events.filter((event) => event.location === location)
-      this.setState({
-        events: locationEvents.slice(0, this.state.numberEvents)
-      })
+      const { numberEvents } = this.state
+      if (this.mounted) {
+        this.setState({
+          events: locationEvents.slice(0, numberEvents),
+          currentLocation: location,
+        })
+      }
     })
   }
 
-  setNewNumber = (e) => {
-    const newNumber = parseInt(e.target.value);
+  /* setNewNumber = (e) => {
+     const newNumber = parseInt(e.target.value);
+     this.setState({
+       numberEvents: newNumber
+     })
+     this.updateEvents(this.state.selectedLocation, this.state.numEvents)
+   }*/
+
+  updateNumberEvents = (eventCount) => {
+    const { currentLocation } = this.state;
     this.setState({
-      numberEvents: newNumber
-    })
-    this.updateEvents(this.state.selectedLocation, this.state.numEvents)
-  }
+      numberEvents: eventCount,
+    });
+    this.updateEvents(currentLocation, eventCount);
+  };
+
+
 
   render() {
-
     return (
       <div className="App">
         <EventList events={this.state.events} />
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <NumEvents numberEvents={this.state.numberEvents} setNewNumber={this.setNewNumber} />
+        <NumEvents numberEvents={this.state.numberEvents} updateNumberEvents={this.updateNumberEvents} />
       </div>
     );
   }
