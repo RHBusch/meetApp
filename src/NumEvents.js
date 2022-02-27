@@ -12,7 +12,7 @@ class NumEvents extends Component {
         const value = event.target.value;
         if (value < 1 || value > 32) {
             this.setState({
-                numEvents: value,
+                numEvents: '',
                 infoText: 'Please enter a number between 1 and 32 :)',
             })
         } else {
