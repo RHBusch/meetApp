@@ -18,7 +18,7 @@ class CitySearch extends Component {
         if (suggestions.length === 0) {
             this.setState({
                 query: value,
-                infoText: 'DOH! We can not find the city you are looking for. Please check your spelling or try another city',
+                infoText: 'DOH! That city cannot be found. Please check your spelling or try another city',
             });
         }
         else {
