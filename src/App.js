@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumEvents from './NumEvents';
 import { getEvents, extractLocations } from './api';
+import { Container, Row, Col } from "react-bootstrap";
 import './nprogress.css'
 
 
@@ -60,13 +61,17 @@ export class App extends Component {
   };
 
 
-
+  //Using bootstrap below to make this a responsive design. 
   render() {
     return (
       <div className="App">
-        <EventList events={this.state.events} />
-        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <NumEvents numberEvents={this.state.numberEvents} updateNumberEvents={this.updateNumberEvents} />
+        <Container>
+          <Col>
+            <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+            <NumEvents numberEvents={this.state.numberEvents} updateNumberEvents={this.updateNumberEvents} />
+            <EventList events={this.state.events} />
+          </Col>
+        </Container>
       </div>
     );
   }
