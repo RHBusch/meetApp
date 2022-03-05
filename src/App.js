@@ -58,12 +58,25 @@ export class App extends Component {
       <div className="App">
         {!navigator.onLine && <WarningAlert text={
           "The app is offline. Loading events will be unavailable until you reconnect. "} />}
-        <Container>
-          <Col>
-            <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-            <NumEvents numberEvents={this.state.numberEvents} updateNumberEvents={this.updateNumberEvents} />
-            <EventList events={this.state.events} />
-          </Col>
+        <Container fluid className="mainAppContainer">
+          <Row>
+            <Col sm={12} className="align-items-center">
+              <h1> MeetApp </h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={12}>
+              <h2> Search for a city!</h2>
+              <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+              <h2> How many events do you want to see? </h2>
+              <NumEvents numberEvents={this.state.numberEvents} updateNumberEvents={this.updateNumberEvents} />
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={12}>
+              <EventList events={this.state.events} />
+            </Col>
+          </Row>
         </Container>
       </div>
     );
