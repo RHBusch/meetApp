@@ -5,8 +5,7 @@ import CitySearch from './CitySearch';
 import NumEvents from './NumEvents';
 import { getEvents, extractLocations } from './api';
 import { Container, Row, Col } from "react-bootstrap";
-import './nprogress.css'
-
+import { WarningAlert } from './alert';
 
 export class App extends Component {
   state = {
@@ -44,14 +43,6 @@ export class App extends Component {
     })
   }
 
-  /* setNewNumber = (e) => {
-     const newNumber = parseInt(e.target.value);
-     this.setState({
-       numberEvents: newNumber
-     })
-     this.updateEvents(this.state.selectedLocation, this.state.numEvents)
-   }*/
-
   updateNumberEvents = (eventCount) => {
     const { currentLocation } = this.state;
     this.setState({
@@ -65,6 +56,8 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
+        {!navigator.onLine && <WarningAlert text={
+          "The app is offline. Loading events will be unavailable until you reconnect. "} />}
         <Container>
           <Col>
             <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
