@@ -60,12 +60,12 @@ export class App extends Component {
           "The app is offline. Loading events will be unavailable until you reconnect. "} />}
         <Container fluid className="mainAppContainer">
           <Row>
-            <Col sm={12} className="align-items-center">
+            <Col className="align-items-center">
               <h1> MeetApp </h1>
             </Col>
           </Row>
           <Row>
-            <Col sm={12}>
+            <Col>
               <h2> Search for a city!</h2>
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
               <h2> How many events do you want to see? </h2>
@@ -73,7 +73,7 @@ export class App extends Component {
             </Col>
           </Row>
           <Row>
-            <Col sm={12}>
+            <Col>
               <EventList events={this.state.events} />
             </Col>
           </Row>
