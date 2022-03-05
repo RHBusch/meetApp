@@ -106,4 +106,7 @@ Scenario(s)
     * Review errors
     * Use reports to boost performance
 
-
+### Lighthouse Assessment
+    * Fast and reliable
+    * Installable
+    * PWA optipmized
