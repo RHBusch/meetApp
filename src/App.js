@@ -53,6 +53,7 @@ export class App extends Component {
 
 
   //Using bootstrap below to make this a responsive design. 
+  //Using the WarningAlert below (navigator API) when the app is offline. 
   render() {
     return (
       <div className="App">
