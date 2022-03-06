@@ -13,17 +13,30 @@ export class App extends Component {
     events: [],
     locations: [],
     numberEvents: 32,
-    selectedLocation: 'all'
+    selectedLocation: 'all',
+    showWelcomeScreen: undefined
   }
 
-  componentDidMount() { //Loading events when app loads. Using API call to save initial data to state. 
-    this.mounted = true; //Updating state only if this.mounted is true. 
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({ events: events.slice(0, this.state.numberEvents), locations: extractLocations(events) })
-      }
-    })
+  async componentDidMount() {
+    this.mounted = true;
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false :
+      true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get("code");
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
+      getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({ events: events.slice(0, this.state.numberEvents), locations: extractLocations(events) })
+        }
+      })
+    }
   }
+
+
+
+
 
   componentWillUnmount() {
     this.mounted = false;
@@ -56,6 +69,8 @@ export class App extends Component {
   //Using bootstrap below to make this a responsive design. 
   //Using the WarningAlert below (navigator API) when the app is offline. 
   render() {
+    if (this.state.showWelcomeScreen === undefined) return <div
+      className="App" />
     return (
       <div className="App">
         {!navigator.onLine && <WarningAlert text={
@@ -80,6 +95,8 @@ export class App extends Component {
             </Col>
           </Row>
         </Container>
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
+          getAccessToken={() => { getAccessToken() }} />
       </div>
     );
   }
