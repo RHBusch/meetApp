@@ -29,7 +29,7 @@ o.svg"
                     </div>
                 </div>
                 <a
-                    href="https://rhbusch.github.io/meetapp/privacy.html"
+                    href="https://rhbusch.github.io/tapp/privacy.html"
                     rel="nofollow noopener"
                 >
                     Privacy policy
