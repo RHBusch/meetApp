@@ -24,7 +24,7 @@ export class App extends Component {
       true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });//Adding code for welcome screen
     if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
         if (this.mounted) {
@@ -33,10 +33,6 @@ export class App extends Component {
       })
     }
   }
-
-
-
-
 
   componentWillUnmount() {
     this.mounted = false;
@@ -67,7 +63,7 @@ export class App extends Component {
 
 
   //Using bootstrap below to make this a responsive design. 
-  //Using the WarningAlert below (navigator API) when the app is offline. 
+  //Using the WarningAlert below (navigator API) when the app is offline. This is a best practice I should include in other PWAs.  
   render() {
     if (this.state.showWelcomeScreen === undefined) return <div
       className="App" />
