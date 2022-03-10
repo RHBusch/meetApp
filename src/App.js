@@ -61,6 +61,15 @@ export class App extends Component {
     this.updateEvents(currentLocation, eventCount);
   };
 
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter((event) => event.location === location).length
+      const city = location.split(', ').shift()
+      return { city, number };
+    })
+    return data;
+  };
 
   //Using bootstrap below to make this a responsive design. 
   //Using the WarningAlert below (navigator API) when the app is offline. This is a best practice I should include in other PWAs.  
