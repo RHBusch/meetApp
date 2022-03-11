@@ -21,7 +21,7 @@ const EventGenre = ({ events }) => {
     )
 
 
-    const colors = ['#0000FF', '#FFA500', '#FFC0CB', '#00FF00', '#FFFF00']
+    const colors = ['#0000FF', '#FFA500', '#FFC0CB', '#00FF00', '#FFFF00'];
 
 
 
@@ -34,11 +34,11 @@ const EventGenre = ({ events }) => {
                     cy={200}
                     labelLine={false}
                     outerRadius={80}
-                    faill="#8884d8"
+                    // faill="#8884d8"
                     dataKey="value"
                     label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
                     {data.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={colors[index]} />
+                        <Cell key={`cell-${index}`} fill={colors[index % colors.length]} name={entry.name} />
                     ))}
                 </Pie>
             </PieChart>
