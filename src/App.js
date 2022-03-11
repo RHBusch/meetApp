@@ -3,7 +3,7 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumEvents from './NumEvents';
-import EventGenre from './EventGenre'
+import EventGenre from './EventGenre';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { Container, Row, Col } from "react-bootstrap";
 import { WarningAlert } from './alert';
