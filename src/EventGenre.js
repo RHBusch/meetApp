@@ -34,7 +34,7 @@ const EventGenre = ({ events }) => {
                     cy={200}
                     labelLine={false}
                     outerRadius={80}
-                    // faill="#8884d8"
+                    fill="#8884d8"
                     dataKey="value"
                     label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
                     {data.map((entry, index) => (
