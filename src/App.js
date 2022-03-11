@@ -3,7 +3,7 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumEvents from './NumEvents';
-import EventGenre from './EventGenre';
+import EventGenre from './EventGenre'
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { Container, Row, Col } from "react-bootstrap";
 import { WarningAlert } from './alert';
@@ -102,8 +102,8 @@ export class App extends Component {
             <Col>
               <h4>Events in each city:</h4>
               <div className="data-vis-wrapper">
+                <EventGenre className="pie-chart" events={events} />
                 <ResponsiveContainer height={400}>
-                  <EventGenre events={events} />
                   <ScatterChart
                     margin={{
                       top: 20, right: 20, bottom: 20, left: 20,
