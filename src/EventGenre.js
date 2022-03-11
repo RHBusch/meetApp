@@ -4,7 +4,7 @@ import {
 } from 'recharts';
 
 
-const EventGenre = ({ events }) => {
+/*const EventGenre = ({ events }) => {
     const [data, setData] = useState([]);
     useEffect(() => {
         const getData = () => {
@@ -18,13 +18,15 @@ const EventGenre = ({ events }) => {
         }
         setData(() => getData());
     }, [events]
-    )
+    )*/
 
-
-    const colors = ['#0000FF', '#FFA500', '#FFC0CB', '#00FF00', '#FFFF00']
-
-
-
+const EventGenre = ({ events }) => {
+    const data = [
+        { name: 'Group A', value: 400 },
+        { name: 'Group B', value: 300 },
+        { name: 'Group C', value: 300 },
+        { name: 'Group D', value: 200 },
+    ];
     return (
         <ResponsiveContainer height={400}>
             <PieChart width={400} height={400}>
@@ -34,15 +36,13 @@ const EventGenre = ({ events }) => {
                     cy={200}
                     labelLine={false}
                     outerRadius={80}
-                    faill="#8884d8"
+                    fill="#8884d8"
                     dataKey="value"
                     label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
-                    {data.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={colors[index]} />
-                    ))}
                 </Pie>
             </PieChart>
         </ResponsiveContainer>
     )
 }
+
 export default EventGenre;
