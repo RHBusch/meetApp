@@ -76,10 +76,9 @@ export class App extends Component {
   //Using bootstrap below to make this a responsive design. 
   //Using the WarningAlert below (navigator API) when the app is offline. This is a best practice I should include in other PWAs.  
   render() {
-
+    const { events } = this.state;
     if (this.state.showWelcomeScreen === undefined) return <div
       className="App" />
-
     return (
       <div className="App">
         {!navigator.onLine && <WarningAlert text={
@@ -102,7 +101,7 @@ export class App extends Component {
             <Col>
               <h4>Events in each city:</h4>
               <div className="data-vis-wrapper">
-                <EventGenre className="pie-chart" events={this.state.events} />
+                <EventGenre className="pie-chart" events={events} />
                 <ResponsiveContainer height={400}>
                   <ScatterChart
                     margin={{
