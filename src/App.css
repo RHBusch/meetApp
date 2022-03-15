@@ -107,9 +107,20 @@ input[type="number"] {
   box-shadow: 1px 1px 10px rgba(65, 60, 88, 0.2);
 }
 
+.titleWrapper{
+  padding: 20px 20px 35px;
+  margin: 10px;
+  text-align: center;
+  align-content: center;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-white);
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(65, 60, 88, 0.2);
+}
+
 .EventList {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
   grid-row-gap: 20px;
   justify-items: center;

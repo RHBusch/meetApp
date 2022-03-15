@@ -85,7 +85,7 @@ export class App extends Component {
           "The app is offline. Loading events will be unavailable until you reconnect. "} />}
         <Container fluid className="mainAppContainer">
           <Row>
-            <Col className="align-items-center">
+            <Col className="titleWrapper">
               <h1> MeetApp </h1>
             </Col>
           </Row>
