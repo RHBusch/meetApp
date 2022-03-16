@@ -27,7 +27,7 @@ class Event extends Component {
                     onClick={this.handleClick}> {collapsed ? "Show Details" : "Hide Details"} </button>
 
                 {!collapsed && <div className="eventDescription">
-                    <a href={event.htmllink} className="calLink">
+                    <a href={event.htmlLink} className="calLink">
                         Details via Google Cal.
                     </a>
                     <h3 className="aboutHeader">
