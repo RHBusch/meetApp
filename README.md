@@ -101,6 +101,13 @@ Scenario(s)
     * When scrolling and viewing the screen 
     * Then a chart will highlight the number of upcoming events by city 
 
+Scenario(s)
+
+  2. Show a chart with the % of events fitting certain development categories (React, JavaScript, etc.).  
+    * Given the user is on the main page 
+    * When scrolling and viewing the screen 
+    * Then a chart will highlight the % of events fitting different development categories 
+
 ### Atatus Browser Monitor 
     * Review load speeeds
     * Review errors
