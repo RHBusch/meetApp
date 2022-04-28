@@ -15,7 +15,7 @@ export class App extends Component {
     events: [],
     locations: [],
     numberEvents: 32,
-    selectedLocation: 'all',
+    selectedLocation: "all",
     showWelcomeScreen: undefined
   }
 
@@ -31,7 +31,7 @@ export class App extends Component {
       getEvents().then((events) => {
         if (this.mounted) {
           this.setState({ events: events.slice(0, this.state.numberEvents), locations: extractLocations(events) })
-        }
+        } //using events on page
       })
     }
   }
@@ -55,12 +55,12 @@ export class App extends Component {
     })
   }
 
-  updateNumberEvents = (eventCount) => {
-    const { currentLocation } = this.state;
-    this.setState({
-      numberEvents: eventCount,
+  updateNumberEvents = async (eventCount) => {
+    let { currentLocation } = this.state;
+    await this.setState({
+      numberEvents: eventCount
     });
-    this.updateEvents(currentLocation, eventCount);
+    this.updateEvents(currentLocation);
   };
 
   getData = () => {
@@ -92,10 +92,10 @@ export class App extends Component {
           </Row>
           <Row>
             <Col className="inputWrapper">
-              <h2> Search for a city!</h2>
+              <h2> Step One: Enter City</h2>
               <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-              <h2> How many events do you want to see? </h2>
-              <NumEvents numberEvents={this.state.numberEvents} updateNumberEvents={this.updateNumberEvents} />
+              <h2> Step Two: Enter Number Of Events </h2>
+              <NumEvents numberEvents={this.state.numberEvents} updateNumberEvents={this.updateNumberEvents} updateEvents={this.updateEvents} />
             </Col>
           </Row>
           <Row>
