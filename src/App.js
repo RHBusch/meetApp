@@ -33,7 +33,8 @@ export class App extends Component {
         if (this.mounted) {
           this.setState({
             events: events,
-            eventsLoaded: events.slice(0, this.state.numberEvents), locations: extractLocations(events)
+            eventsLoaded: events.slice(0, this.state.numberEvents),
+            locations: extractLocations(events)
           })
         }
       })
@@ -83,7 +84,7 @@ export class App extends Component {
   //Using the WarningAlert below (navigator API) when the app is offline. This is a best practice I should include in other PWAs.  
   //Using wrappers helps clear the way for styling in the css file. 
   render() {
-    const { events, locations, numberEvents, eventsLoaded } = this.state;
+    let { events, locations, numberEvents, eventsLoaded } = this.state;
     if (this.state.showWelcomeScreen === undefined) return <div
       className="App" />
     return (
@@ -99,7 +100,7 @@ export class App extends Component {
           <Row>
             <Col className="inputWrapper">
               <h2> Step One: Enter City</h2>
-              <CitySearch locations={locations} numberEvents={numberEvents} updateEvents={this.updateEvents} />
+              <CitySearch locations={locations} updateEvents={this.updateEvents} />
               <h2> Step Two: Enter Number Of Events </h2>
               <NumEvents numberEvents={numberEvents} updateNumberEvents={this.updateNumberEvents} />
             </Col>

@@ -4,26 +4,27 @@ import { ErrorAlert } from './alert';
 
 class NumEvents extends Component {
     state = {
-        numEvents: 32,
+        newNumEvents: this.props.numberEvents,
         infoText: '',
     };
 
 
-    handleInputChanged = (event) => {
+    handleInputChanged = async (event) => {
         const value = event.target.value;
         if (value < 1 || value > 32) {
             this.setState({
-                numEvents: '',
+                newNumEvents: '',
                 infoText: 'Please enter a number between 1 and 32 :)',
             })
         } else {
-            this.setState({
-                numEvents: value,
+            await this.setState({
+                newNumEvents: value,
                 infoText: '',
             })
         }
-        this.props.updateNumberEvents(event.target.value)
+        this.props.updateNumberEvents(this.state.newNumEvents)
     }
+
     render() {
         return (
             <div className="numEventsContainer">
@@ -31,7 +32,7 @@ class NumEvents extends Component {
                     <input
                         className="numEvents"
                         type="number"
-                        value={this.state.numEvents}
+                        value={this.state.newNumEvents}
                         onChange={this.handleInputChanged} />
                     <ErrorAlert text={this.state.infoText} className="errorAlert" />
                 </div>
