@@ -26,15 +26,19 @@ class NumEvents extends Component {
     }
 
     render() {
+
+        const { newNumEvents, infoText } = this.state;
+
         return (
+
             <div className="numEventsContainer">
                 <div className="NumberOfEvents">
                     <input
                         className="numEvents"
                         type="number"
-                        value={this.state.newNumEvents}
+                        value={newNumEvents}
                         onChange={this.handleInputChanged} />
-                    <ErrorAlert text={this.state.infoText} className="errorAlert" />
+                    <ErrorAlert text={infoText} className="errorAlert" />
                 </div>
             </div>
         )

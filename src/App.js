@@ -47,19 +47,18 @@ export class App extends Component {
 
   updateEvents = (location) => {
     let { numberEvents } = this.state
-
     getEvents().then((events) => {
-      let locationEvents = location === "all"
-        ? events :
+      const locationEvents = (location === "all") ?
+        events :
         events.filter((event) => event.location === location)
       if (this.mounted) {
         const preLoadedEvents = locationEvents.slice(0, numberEvents)
         this.setState({
           eventsLoaded: preLoadedEvents,
           currentLocation: location,
-        })
+        });
       }
-    })
+    });
   }
 
   updateNumberEvents = async (eventCount) => {
