@@ -13,6 +13,7 @@ import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Responsive
 export class App extends Component {
   state = {
     events: [],
+    eventsLoaded: [], // Need to use this space so users can change the events shown on screen w/o updating city
     locations: [],
     numberEvents: 32,
     selectedLocation: "all",
@@ -30,8 +31,11 @@ export class App extends Component {
     if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
         if (this.mounted) {
-          this.setState({ events: events.slice(0, this.state.numberEvents), locations: extractLocations(events) })
-        } //using events on page
+          this.setState({
+            events: events,
+            eventsLoaded: events.slice(0, this.state.numberEvents), locations: extractLocations(events)
+          })
+        }
       })
     }
   }
@@ -41,14 +45,16 @@ export class App extends Component {
   }
 
   updateEvents = (location) => {
+    let { numberEvents } = this.state
+
     getEvents().then((events) => {
       let locationEvents = location === "all"
         ? events :
         events.filter((event) => event.location === location)
-      const { numberEvents } = this.state
       if (this.mounted) {
+        const preLoadedEvents = locationEvents.slice(0, numberEvents)
         this.setState({
-          events: locationEvents.slice(0, numberEvents),
+          eventsLoaded: preLoadedEvents,
           currentLocation: location,
         })
       }
@@ -77,7 +83,7 @@ export class App extends Component {
   //Using the WarningAlert below (navigator API) when the app is offline. This is a best practice I should include in other PWAs.  
   //Using wrappers helps clear the way for styling in the css file. 
   render() {
-    const { events } = this.state;
+    const { events, locations, numberEvents, eventsLoaded } = this.state;
     if (this.state.showWelcomeScreen === undefined) return <div
       className="App" />
     return (
@@ -93,9 +99,9 @@ export class App extends Component {
           <Row>
             <Col className="inputWrapper">
               <h2> Step One: Enter City</h2>
-              <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+              <CitySearch locations={locations} numberEvents={numberEvents} updateEvents={this.updateEvents} />
               <h2> Step Two: Enter Number Of Events </h2>
-              <NumEvents numberEvents={this.state.numberEvents} updateNumberEvents={this.updateNumberEvents} updateEvents={this.updateEvents} />
+              <NumEvents numberEvents={numberEvents} updateNumberEvents={this.updateNumberEvents} />
             </Col>
           </Row>
           <Row>
@@ -122,7 +128,7 @@ export class App extends Component {
           </Row>
           <Row>
             <Col className="eventsWrapper">
-              <EventList events={this.state.events} />
+              <EventList events={eventsLoaded} />
             </Col>
           </Row>
         </Container>
