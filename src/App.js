@@ -83,7 +83,7 @@ export class App extends Component {
   //Using the WarningAlert below (navigator API) when the app is offline. This is a best practice I should include in other PWAs.  
   //Using wrappers helps clear the way for styling in the css file. 
   render() {
-    let { events, locations, numberEvents, eventsLoaded } = this.state;
+    const { events, locations, numberEvents, eventsLoaded } = this.state;
     if (this.state.showWelcomeScreen === undefined) return <div
       className="App" />
     return (
