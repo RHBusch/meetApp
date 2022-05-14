@@ -16,7 +16,7 @@ export class App extends Component {
     eventsLoaded: [], // Need to use this space so users can change the events shown on screen w/o updating city
     locations: [],
     numberEvents: 32,
-    selectedLocation: "all",
+    currentLocation: "all",
     showWelcomeScreen: undefined
   }
 
