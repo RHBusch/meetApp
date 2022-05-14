@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumEvents from './NumEvents';
 import EventGenre from './EventGenre'
+import EventPlot from './EventPlot';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { Container, Row, Col } from "react-bootstrap";
 import { WarningAlert } from './alert';
@@ -83,7 +84,7 @@ export class App extends Component {
   //Using the WarningAlert below (navigator API) when the app is offline. This is a best practice I should include in other PWAs.  
   //Using wrappers helps clear the way for styling in the css file. 
   render() {
-    const { events, locations, numberEvents, eventsLoaded } = this.state;
+    const { events, locations, numberEvents, eventsLoaded, currentLocation } = this.state;
     if (this.state.showWelcomeScreen === undefined) return <div
       className="App" />
     return (
@@ -109,19 +110,8 @@ export class App extends Component {
               <div className="dataWrapper">
                 <h4>Events in each city:</h4>
                 <div className="data-vis-wrapper">
-                  <EventGenre className="pie-chart" events={events} />
-                  <ResponsiveContainer height={400}>
-                    <ScatterChart
-                      margin={{
-                        top: 20, right: 20, bottom: 20, left: 20,
-                      }}>
-                      <CartesianGrid />
-                      <XAxis type="category" dataKey="city" name="city" allowDecimals={false} />
-                      <YAxis type="number" dataKey="number" name="Number Of Events" allowDecimals={false} />
-                      <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                      <Scatter data={this.getData()} fill="#8884d8" />
-                    </ScatterChart>
-                  </ResponsiveContainer>
+                  <EventGenre events={eventsLoaded} />
+                  <EventPlot locations={currentLocation} events={eventsLoaded} />
                 </div>
               </div>
             </Col>
@@ -140,3 +130,16 @@ export class App extends Component {
 }
 
 export default App;
+
+/* <ResponsiveContainer height={400}>
+<ScatterChart
+margin={{
+  top: 20, right: 20, bottom: 20, left: 20,
+}}>
+<CartesianGrid />
+<XAxis type="category" dataKey="city" name="city" allowDecimals={false} />
+<YAxis type="number" dataKey="number" name="Number Of Events" allowDecimals={false} />
+<Tooltip cursor={{ strokeDasharray: '3 3' }} />
+<Scatter data={this.getData()} fill="#8884d8" />
+</ScatterChart>
+</ResponsiveContainer>*/
