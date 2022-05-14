@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+/*import React, { useEffect, useState } from 'react';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const EventPlot = ({ locations, events }) => {
@@ -20,7 +20,6 @@ const EventPlot = ({ locations, events }) => {
             return data;
         };
         setData(() => getData());
-
     }, [locations, events]);
 
     return (
@@ -58,3 +57,4 @@ const EventPlot = ({ locations, events }) => {
 
 export default EventPlot
 
+*/

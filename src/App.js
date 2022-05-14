@@ -9,6 +9,8 @@ import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { Container, Row, Col } from "react-bootstrap";
 import { WarningAlert } from './alert';
 import WelcomeScreen from './WelcomeScreen';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+
 
 export class App extends Component {
   state = {
@@ -109,8 +111,19 @@ export class App extends Component {
               <div className="dataWrapper">
                 <h4>Events in each city:</h4>
                 <div className="data-vis-wrapper">
-                  <EventGenre events={eventsLoaded} />
-                  <EventPlot locations={currentLocation} events={eventsLoaded} />
+                  <EventGenre className="pie-chart" events={events} />
+                  <ResponsiveContainer height={400}>
+                    <ScatterChart
+                      margin={{
+                        top: 20, right: 20, bottom: 20, left: 20,
+                      }}>
+                      <CartesianGrid />
+                      <XAxis type="category" dataKey="city" name="city" allowDecimals={false} />
+                      <YAxis type="number" dataKey="number" name="Number Of Events" allowDecimals={false} />
+                      <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                      <Scatter data={this.getData()} fill="#8884d8" />
+                    </ScatterChart>
+                  </ResponsiveContainer>
                 </div>
               </div>
             </Col>
