@@ -143,15 +143,3 @@ export class App extends Component {
 
 export default App;
 
-/* <ResponsiveContainer height={400}>
-<ScatterChart
-margin={{
-  top: 20, right: 20, bottom: 20, left: 20,
-}}>
-<CartesianGrid />
-<XAxis type="category" dataKey="city" name="city" allowDecimals={false} />
-<YAxis type="number" dataKey="number" name="Number Of Events" allowDecimals={false} />
-<Tooltip cursor={{ strokeDasharray: '3 3' }} />
-<Scatter data={this.getData()} fill="#8884d8" />
-</ScatterChart>
-</ResponsiveContainer>*/
