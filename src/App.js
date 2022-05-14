@@ -9,7 +9,6 @@ import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { Container, Row, Col } from "react-bootstrap";
 import { WarningAlert } from './alert';
 import WelcomeScreen from './WelcomeScreen';
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 export class App extends Component {
   state = {
