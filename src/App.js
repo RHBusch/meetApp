@@ -158,7 +158,7 @@ updateNumberEvents = async (eventCount) => {
                 <h4>Events in each city:</h4>
                 <div className="data-vis-wrapper">
                   <EventGenre className="pie-chart" events={events} />
-                  <ResponsiveContainer height={400}>
+                  <ResponsiveContainer width={600} height={400}>
                     <ScatterChart
                       margin={{
                         top: 20, right: 20, bottom: 20, left: 20,
