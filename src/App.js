@@ -21,8 +21,8 @@ export class App extends Component {
     currentLocation: "all",
     showWelcomeScreen: undefined
   }
-
-  async componentDidMount() {
+  //---------------Working eventList but not graphs ------------------------------
+  /*async componentDidMount() {
     this.mounted = true;
     const accessToken = localStorage.getItem('access_token');
     const isTokenValid = (await checkToken(accessToken)).error ? false :
@@ -41,35 +41,81 @@ export class App extends Component {
         }
       })
     }
+  }*/
+
+  /*updateEvents = (location) => {
+  let { numberEvents } = this.state
+  getEvents().then((events) => {
+    const locationEvents = (location === "all") ?
+      events :
+      events.filter((event) => event.location === location)
+    if (this.mounted) {
+      const preLoadedEvents = locationEvents.slice(0, numberEvents)
+      this.setState({
+        eventsLoaded: preLoadedEvents,
+        currentLocation: location,
+      });
+    }
+  });
+}
+
+updateNumberEvents = async (eventCount) => {
+  let { currentLocation } = this.state;
+  await this.setState({
+    numberEvents: eventCount
+  });
+  this.updateEvents(currentLocation);
+};*/
+
+  //---------------- Graphs working but eventlist not responding w/o city-----------------
+  async componentDidMount() {
+    this.mounted = true;
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false :
+      true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get("code");
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });//Adding code for welcome screen
+    if ((code || isTokenValid) && this.mounted) {
+      getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({ events: events.slice(0, this.state.numberEvents), locations: extractLocations(events) })
+        }
+      })
+    }
   }
+
+  updateEvents = (location) => {
+    getEvents().then((events) => {
+      let locationEvents = location === "all"
+        ? events :
+        events.filter((event) => event.location === location)
+      const { numberEvents } = this.state
+      if (this.mounted) {
+        this.setState({
+          events: locationEvents.slice(0, numberEvents),
+          currentLocation: location,
+        })
+      }
+    })
+  }
+
+  updateNumberEvents = (eventCount) => {
+    const { currentLocation } = this.state;
+    this.setState({
+      numberEvents: eventCount,
+    });
+    this.updateEvents(currentLocation, eventCount);
+  };
+
+  //-------------------------------------------------------------------------
+
+
+
 
   componentWillUnmount() {
     this.mounted = false;
   }
-
-  updateEvents = (location) => {
-    let { numberEvents } = this.state
-    getEvents().then((events) => {
-      const locationEvents = (location === "all") ?
-        events :
-        events.filter((event) => event.location === location)
-      if (this.mounted) {
-        const preLoadedEvents = locationEvents.slice(0, numberEvents)
-        this.setState({
-          eventsLoaded: preLoadedEvents,
-          currentLocation: location,
-        });
-      }
-    });
-  }
-
-  updateNumberEvents = async (eventCount) => {
-    let { currentLocation } = this.state;
-    await this.setState({
-      numberEvents: eventCount
-    });
-    this.updateEvents(currentLocation);
-  };
 
   getData = () => {
     const { locations, events } = this.state;
@@ -130,7 +176,7 @@ export class App extends Component {
           </Row>
           <Row>
             <Col className="eventsWrapper">
-              <EventList events={eventsLoaded} />
+              <EventList events={events} />
             </Col>
           </Row>
         </Container>
@@ -143,3 +189,4 @@ export class App extends Component {
 
 export default App;
 
+//Switch from eventsLoaded to events to test responsiveness
