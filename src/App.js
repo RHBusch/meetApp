@@ -121,7 +121,15 @@ updateNumberEvents = async (eventCount) => {
     const { locations, events } = this.state;
     const data = locations.map((location) => {
       const number = events.filter((event) => event.location === location).length
-      const city = location.split(', ').shift()
+
+      let city;
+      if (location.includes('NSW')) {
+        city = location.split('NSW').shift();
+      } else if (location.includes(', ')) {
+        city = location.split(', ').shift();
+      } else if (location.includes('- ')) {
+        city = location.split('- ').shift();
+      }
       return { city, number };
     })
     return data;
@@ -158,7 +166,7 @@ updateNumberEvents = async (eventCount) => {
                 <h4>Events in each city:</h4>
                 <div className="data-vis-wrapper">
                   <EventGenre className="pie-chart" events={events} />
-                  <ResponsiveContainer width={600} height={400}>
+                  <ResponsiveContainer height={400}>
                     <ScatterChart
                       margin={{
                         top: 20, right: 20, bottom: 20, left: 20,
