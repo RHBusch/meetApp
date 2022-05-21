@@ -3,7 +3,8 @@ import './App.css';
 import EventList from '../src/Components/EventList';
 import CitySearch from '../src/Components/CitySearch';
 import NumEvents from '../src/Components/NumEvents';
-import EventGenre from '../src/Components/EventList';
+import EventGenre from '../src/Components/EventGenre';
+
 
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { Container, Row, Col } from "react-bootstrap";
