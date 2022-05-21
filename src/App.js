@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import EventList from './EventList';
-import CitySearch from './CitySearch';
-import NumEvents from './NumEvents';
-import EventGenre from './EventGenre'
-import EventPlot from './EventPlot';
+import EventList from '../src/Components/EventList';
+import CitySearch from '../src/Components/CitySearch';
+import NumEvents from '../src/Components/NumEvents';
+import EventGenre from '../src/Components/EventList';
+
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { Container, Row, Col } from "react-bootstrap";
-import { WarningAlert } from './alert';
+import { WarningAlert } from '../src/Components/alert';
 import WelcomeScreen from './WelcomeScreen';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
